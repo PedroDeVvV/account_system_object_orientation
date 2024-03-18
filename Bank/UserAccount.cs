@@ -16,7 +16,7 @@ namespace Bank
 
         public UserAccount(int numberAccount, string name, double value) : this(numberAccount, name)
         {
-            this.Value = value;
+            Deposito(value);
         }
 
         public void Deposito(double valorDeposito)
