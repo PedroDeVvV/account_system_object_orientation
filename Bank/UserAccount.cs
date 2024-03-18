@@ -1,4 +1,6 @@
-﻿namespace Bank
+﻿using System.Globalization;
+
+namespace Bank
 {
     internal class UserAccount
     {
@@ -12,10 +14,8 @@
             this.Name = name;
         }
 
-        public UserAccount(int numberAccount, string name, double value)
+        public UserAccount(int numberAccount, string name, double value) : this(numberAccount, name)
         {
-            this.NumberAccount = numberAccount;
-            this.Name = name;
             this.Value = value;
         }
 
@@ -26,7 +26,13 @@
 
         public void Saque(double valorSaque)
         {
-            this.Value -= valorSaque;
+            double tax = ((this.Value * 5) / 100) + valorSaque;
+            this.Value -= tax;
+        }
+
+        public override string ToString()
+        {
+            return "Dados atualizados da conta:  Nome: " + this.Name + " | Número da conta: " + this.NumberAccount.ToString() + " | Valor: R$" + this.Value.ToString("F2", CultureInfo.InvariantCulture);
         }
     }
 }
